@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_unnecessary_containers
-
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -37,7 +35,7 @@ class DetailScreenState extends State<DetailScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
-              margin: EdgeInsets.only(top: 16.0),
+              margin: const EdgeInsets.only(top: 16.0),
               child: const Text(
                 'Taman Ujung Bali',
                 textAlign: TextAlign.center,

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -9,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Wisata Bali',
-      theme: ThemeData(),
+      theme: ThemeData(fontFamily: 'Montserrat'),
       home: const DetailScreen(),
     );
   }
@@ -30,6 +32,7 @@ class DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
+            child: SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -39,9 +42,9 @@ class DetailScreenState extends State<DetailScreen> {
                 'Taman Ujung Bali',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 30.0,
-                  fontWeight: FontWeight.bold,
-                ),
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Mulish'),
               )),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 20.0),
@@ -99,7 +102,11 @@ class DetailScreenState extends State<DetailScreen> {
                 DropdownButton(
                     items: const <DropdownMenuItem<String>>[
                       DropdownMenuItem<String>(
-                          value: 'Dart', child: Text('Dart')),
+                          value: 'Dart',
+                          child: Text(
+                            'Dart',
+                            style: TextStyle(fontFamily: 'Mulish'),
+                          )),
                       DropdownMenuItem<String>(
                           value: 'Kotlin', child: Text('Kotlin')),
                       DropdownMenuItem<String>(
@@ -182,7 +189,10 @@ class DetailScreenState extends State<DetailScreen> {
                       });
                     },
                   ),
-                  title: const Text("Dart"),
+                  title: const Text(
+                    "Dart",
+                    style: TextStyle(fontFamily: 'Mulish'),
+                  ),
                 ),
                 ListTile(
                   leading: Radio<String>(
@@ -223,10 +233,38 @@ class DetailScreenState extends State<DetailScreen> {
                 )
               ],
             ),
-          )
+          ),
+          Container(
+              child: Center(
+            child: Row(
+              children: <Widget>[
+                Container(
+                    child: Image.asset(
+                  'src/images/image1.jpg',
+                  width: 50.0,
+                  height: 50.0,
+                )),
+                Container(
+                  child: Image.network(
+                    'https://avatars.githubusercontent.com/u/70432343?s=400&u=28cb38e69ccc24851c36e55f7f4a388a73d69d3d&v=4',
+                    height: 50.0,
+                    width: 50.0,
+                  ),
+                ),
+                Container(
+                  child: const CircleAvatar(
+                    backgroundImage: NetworkImage(
+                      'https://avatars.githubusercontent.com/u/70432343?s=400&u=28cb38e69ccc24851c36e55f7f4a388a73d69d3d&v=4',
+                    ),
+                    radius: 50,
+                  ),
+                )
+              ],
+            ),
+          ))
         ],
       ),
-    ));
+    )));
   }
 
   void showSnackbar() {

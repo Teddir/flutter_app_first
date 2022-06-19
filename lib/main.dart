@@ -22,255 +22,136 @@ class DetailScreen extends StatefulWidget {
 }
 
 class DetailScreenState extends State<DetailScreen> {
-  String? bahasa;
-  String _name = '';
-  bool lightOn = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
+          Image.network(
+            'https://images.unsplash.com/photo-1632010284700-1dd273139d73?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+          ),
           Container(
-              margin: const EdgeInsets.only(top: 16.0),
-              child: const Text(
-                'Taman Ujung Bali',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Mulish'),
-              )),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Column(
-                  children: const [
-                    Icon(Icons.calendar_today_outlined),
-                    SizedBox(height: 8.0),
-                    Text('Open Everydy'),
-                  ],
-                ),
-                Column(
-                  children: const [
-                    Icon(Icons.access_time_outlined),
-                    SizedBox(height: 8.0),
-                    Text('09:00 - 20:00'),
-                  ],
-                ),
-                Column(
-                  children: const [
-                    Icon(Icons.monetization_on_outlined),
-                    SizedBox(height: 8.0),
-                    Text('25.000'),
-                  ],
-                )
-              ],
+            padding: const EdgeInsets.symmetric(vertical: 18.0),
+            child: Text(
+              'Network Country'.toUpperCase(),
+              style: const TextStyle(
+                fontSize: 24.0,
+                fontFamily: 'Mulish',
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 16.0),
-            child: Column(
-              children: const <Widget>[
-                Text(
-                  'alankan aplikasi Anda. Saat ini device atau emulator Anda memang masih belum menampilkan apa pun. Namun, kita akan memanfaatkan fitur hot reload untuk melihat perubahan-perubahan yang akan kita lakukan ke depan.',
-                  textAlign: TextAlign.center,
-                )
-              ],
-            ),
-          ),
-          Container(
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.add),
-                  color: Colors.blue,
+                Column(
+                  children: const <Widget>[
+                    Icon(
+                      Icons.calendar_today_outlined,
+                      size: 20.0,
+                    ),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Text(
+                      'Open Office',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w800, fontSize: 14.0),
+                    )
+                  ],
                 ),
-                TextButton(onPressed: () {}, child: const Text('Click Me')),
-                OutlinedButton(onPressed: () {}, child: const Text('Click Me')),
-                ElevatedButton(onPressed: () {}, child: const Text('Click Me')),
-                DropdownButton(
-                    items: const <DropdownMenuItem<String>>[
-                      DropdownMenuItem<String>(
-                          value: 'Dart',
-                          child: Text(
-                            'Dart',
-                            style: TextStyle(fontFamily: 'Mulish'),
-                          )),
-                      DropdownMenuItem<String>(
-                          value: 'Kotlin', child: Text('Kotlin')),
-                      DropdownMenuItem<String>(
-                          value: 'Swift', child: Text('Swift')),
-                    ],
-                    value: bahasa,
-                    onChanged: (String? value) {
-                      setState(() {
-                        bahasa = value;
-                      });
-                    })
+                Column(
+                  children: const <Widget>[
+                    Icon(
+                      Icons.timeline_outlined,
+                      size: 20.0,
+                    ),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Text(
+                      '09:00 - 20:00',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w800, fontSize: 14.0),
+                    )
+                  ],
+                ),
+                Column(
+                  children: const <Widget>[
+                    Icon(
+                      Icons.money_off_csred_outlined,
+                      size: 20.0,
+                    ),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Text(
+                      'Open Office',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w800, fontSize: 14.0),
+                    )
+                  ],
+                ),
               ],
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 18.0, vertical: 12.0),
             child: Column(
-              children: <Widget>[
-                TextField(
-                  decoration: const InputDecoration(
-                      hintText: 'Write you name ygy', labelText: 'Your Name'),
-                  onChanged: (String value) {
-                    setState(() {
-                      _name = value;
-                    });
-                  },
-                ),
-                const SizedBox(height: 8.0),
-                ElevatedButton(
-                    onPressed: (() {
-                      _name == ''
-                          ? ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                              content: Text('Input your name'),
-                              duration: Duration(seconds: 1),
-                              backgroundColor: Colors.orange,
-                            ))
-                          : showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  content: Text('Hello $_name'),
-                                );
-                              });
-                    }),
-                    child: const Text('Simpan'))
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const <Widget>[
+                Text(
+                  'The easiest way to do it is to add the onChanged event of the TextField and convert to uppercase using the controller of the TextField just like the above: TextField ( controller: controllerReservation, onChanged',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16.0, fontFamily: 'Mulish'),
+                )
               ],
             ),
           ),
           Container(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                children: [
-                  Switch(
-                      value: lightOn,
-                      onChanged: (bool value) {
-                        setState(() {
-                          lightOn = !lightOn;
-                        });
-
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text(lightOn ? 'Light On' : 'Light Off'),
-                          duration: const Duration(seconds: 1),
-                        ));
-                      })
+              height: 150,
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: ClipRRect(
+                        child: Image.network(
+                          'https://images.unsplash.com/photo-1652394012521-9b613d1d873b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=875&q=80',
+                        ),
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: ClipRRect(
+                        child: Image.network(
+                          'https://images.unsplash.com/photo-1655216985244-3575ff74cb67?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80',
+                        ),
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: ClipRRect(
+                        child: Image.network(
+                          'https://images.unsplash.com/photo-1654783859762-4231b96af3ef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+                        ),
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: ClipRRect(
+                        child: Image.network(
+                          'https://images.unsplash.com/photo-1655304672848-f4f12107882d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80',
+                        ),
+                      ))
                 ],
               )),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              children: <Widget>[
-                ListTile(
-                  leading: Radio<String>(
-                    value: 'Dart',
-                    groupValue: bahasa,
-                    onChanged: (value) {
-                      setState(() {
-                        bahasa = value;
-                        showSnackbar();
-                      });
-                    },
-                  ),
-                  title: const Text(
-                    "Dart",
-                    style: TextStyle(fontFamily: 'Mulish'),
-                  ),
-                ),
-                ListTile(
-                  leading: Radio<String>(
-                    value: 'Kotlin',
-                    groupValue: bahasa,
-                    onChanged: (value) {
-                      setState(() {
-                        bahasa = value;
-                        showSnackbar();
-                      });
-                    },
-                  ),
-                  title: const Text("Kotlin"),
-                ),
-                ListTile(
-                  leading: Radio<String>(
-                    value: 'Swift',
-                    groupValue: bahasa,
-                    onChanged: (value) {
-                      setState(() {
-                        bahasa = value;
-                        showSnackbar();
-                      });
-                    },
-                  ),
-                  title: const Text("Swift"),
-                ),
-                ListTile(
-                  leading: Checkbox(
-                    value: lightOn,
-                    onChanged: (value) {
-                      setState(() {
-                        lightOn = !lightOn;
-                      });
-                    },
-                  ),
-                  title: const Text("Agree / Disagree"),
-                )
-              ],
-            ),
-          ),
-          Container(
-              child: Center(
-            child: Row(
-              children: <Widget>[
-                Container(
-                    child: Image.asset(
-                  'src/images/image1.jpg',
-                  width: 50.0,
-                  height: 50.0,
-                )),
-                Container(
-                  child: Image.network(
-                    'https://avatars.githubusercontent.com/u/70432343?s=400&u=28cb38e69ccc24851c36e55f7f4a388a73d69d3d&v=4',
-                    height: 50.0,
-                    width: 50.0,
-                  ),
-                ),
-                Container(
-                  child: const CircleAvatar(
-                    backgroundImage: NetworkImage(
-                      'https://avatars.githubusercontent.com/u/70432343?s=400&u=28cb38e69ccc24851c36e55f7f4a388a73d69d3d&v=4',
-                    ),
-                    radius: 50,
-                  ),
-                )
-              ],
-            ),
-          ))
         ],
       ),
     )));
-  }
-
-  void showSnackbar() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('$bahasa selected'),
-        duration: const Duration(seconds: 1),
-      ),
-    );
   }
 }

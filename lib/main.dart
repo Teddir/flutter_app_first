@@ -10,23 +10,254 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Wisata Bali',
       theme: ThemeData(fontFamily: 'Montserrat'),
-      home: const DetailScreen(),
+      home: const ListColor(),
     );
   }
 }
 
-class DetailScreen extends StatefulWidget {
-  const DetailScreen({Key? key}) : super(key: key);
+// responsive with expanded & Flexible
+class ListColor extends StatefulWidget {
+  const ListColor({Key? key}) : super(key: key);
   @override
-  DetailScreenState createState() => DetailScreenState();
+  ListColorState createState() => ListColorState();
 }
 
-class DetailScreenState extends State<DetailScreen> {
+class ListColorState extends State<ListColor> {
+  final List myColor = [
+    {"colorCode": Colors.pink, "name": "pink"},
+    {"colorCode": Colors.red, "name": "red"},
+    {"colorCode": Colors.blue, "name": "blue"}
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      // children: myColor.map((e) {
+      //   Color? codeColor = myColor[myColor.indexOf(e)]["colorCode"];
+      //   String nameColor = myColor[myColor.indexOf(e)]["name"];
+      //   return Expanded(
+      //     flex: nameColor == 'pink' ? 2 : 1,
+      //     child: Container(
+      //       decoration: BoxDecoration(color: codeColor),
+      //     ),
+      //   );
+      // }).toList(),
+      children: [
+        Row(
+          children: const [
+            ExpandedWidget(),
+            FlexibleWidget(),
+          ],
+        ),
+        Row(
+          children: const [
+            ExpandedWidget(),
+            ExpandedWidget(),
+          ],
+        ),
+        Row(
+          children: const [
+            FlexibleWidget(),
+            FlexibleWidget(),
+          ],
+        ),
+        Row(
+          children: const [
+            FlexibleWidget(),
+            ExpandedWidget(),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class ExpandedWidget extends StatelessWidget {
+  const ExpandedWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.teal,
+          border: Border.all(color: Colors.white),
+        ),
+        child: const Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text(
+            'Expanded',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class FlexibleWidget extends StatelessWidget {
+  const FlexibleWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.tealAccent,
+          border: Border.all(color: Colors.white),
+        ),
+        child: const Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text(
+            'Flexible',
+            style: TextStyle(
+              color: Colors.teal,
+              fontSize: 24,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ListViewHehe extends StatefulWidget {
+  const ListViewHehe({Key? key}) : super(key: key);
+  @override
+  ListViewHeheState createState() => ListViewHeheState();
+}
+
+class GueList {
+  String name;
+  int id;
+  int age;
+
+  GueList(this.name, this.id, this.age);
+}
+
+class ListViewHeheState extends State<ListViewHehe> {
+  final List<int> numberList = <int>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  final List myList = [
+    {
+      "name": 'Teddi',
+      "dataDiri": [
+        {"umur": "22", "gender": "L"}
+      ]
+    },
+    {
+      "name": 'Rijlan',
+      "dataDiri": [
+        {"umur": "21", "gender": "L"}
+      ]
+    },
+    {
+      "name": 'Ihsan',
+      "dataDiri": [
+        {"umur": "22", "gender": "L"}
+      ]
+    },
+    {
+      "name": 'Faris',
+      "dataDiri": [
+        {"umur": "23", "gender": "L"}
+      ]
+    },
+    {
+      "name": 'Agustina',
+      "dataDiri": [
+        {"umur": "23", "gender": "P"}
+      ]
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-            child: SingleChildScrollView(
+      //     body: ListView(
+      //         children: numberList.map((number) {
+      //   return Container(
+      //     height: 250,
+      //     alignment: Alignment.center,
+      //     decoration: BoxDecoration(
+      //       color: Colors.black,
+      //       border: Border.all(color: Colors.white, width: 1),
+      //     ),
+      //     child: Text(
+      //       "Hello Teddi".toUpperCase(),
+      //       style: const TextStyle(
+      //           fontWeight: FontWeight.bold,
+      //           fontFamily: 'Mulish',
+      //           fontSize: 24.0,
+      //           color: Colors.white,
+      //           letterSpacing: 10.0),
+      //       textAlign: TextAlign.center,
+      //     ),
+      //   );
+      // }).toList())
+      // body: ListView.builder(
+      //   itemBuilder: (BuildContext context, int index) {
+      //     return Container(
+      //       height: 250,
+      //       alignment: Alignment.center,
+      //       decoration: BoxDecoration(
+      //         color: Colors.black,
+      //         border: Border.all(color: Colors.white, width: 1),
+      //       ),
+      //       child: Text(
+      //         "Hello Teddi".toUpperCase(),
+      //         style: const TextStyle(
+      //             fontWeight: FontWeight.bold,
+      //             fontFamily: 'Mulish',
+      //             fontSize: 24.0,
+      //             color: Colors.white,
+      //             letterSpacing: 10.0),
+      //         textAlign: TextAlign.center,
+      //       ),
+      //     );
+      //   },
+      //   itemCount: numberList.length,
+      // ),
+      body: ListView.separated(
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              height: 250,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                border: Border.all(color: Colors.white, width: 1),
+              ),
+              child: Text(
+                "Hello ${myList[index]["name"]}".toUpperCase(),
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Mulish',
+                    fontSize: 24.0,
+                    color: Colors.white,
+                    letterSpacing: 10.0),
+                textAlign: TextAlign.center,
+              ),
+            );
+          },
+          separatorBuilder: (BuildContext context, int index) {
+            return const Divider();
+          },
+          itemCount: myList.length),
+    );
+  }
+}
+
+class PerbaikanTampilan extends StatefulWidget {
+  @override
+  PerbaikanTampilanState createState() => PerbaikanTampilanState();
+}
+
+class PerbaikanTampilanState extends State<PerbaikanTampilan> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
@@ -152,6 +383,6 @@ class DetailScreenState extends State<DetailScreen> {
               )),
         ],
       ),
-    )));
+    ));
   }
 }

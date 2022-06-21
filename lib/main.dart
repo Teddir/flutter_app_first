@@ -10,7 +10,65 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Wisata Bali',
       theme: ThemeData(fontFamily: 'Montserrat'),
-      home: const ListColor(),
+      home: FirstScreen(),
+    );
+  }
+}
+
+// navigation
+class FirstScreen extends StatelessWidget {
+  final String message = 'Hello Bro aku props dari screnn pertama ygy';
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("FirstScreen"),
+      ),
+      body: Container(
+        alignment: Alignment.center,
+        child: Center(
+          child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ScondScreen(message)));
+              },
+              child: const Text('GoTo ScondScreen')),
+        ),
+      ),
+    );
+  }
+}
+
+class ScondScreen extends StatelessWidget {
+  final String message;
+  const ScondScreen(this.message, {Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('ScondScreen'),
+      ),
+      body: Container(
+        alignment: Alignment.center,
+        child: Center(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(message),
+            const SizedBox(
+              height: 5.0,
+              width: 100,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Back ygy')),
+          ],
+        )),
+      ),
     );
   }
 }
@@ -249,6 +307,7 @@ class ListViewHeheState extends State<ListViewHehe> {
 }
 
 class PerbaikanTampilan extends StatefulWidget {
+  const PerbaikanTampilan({Key? key}) : super(key: key);
   @override
   PerbaikanTampilanState createState() => PerbaikanTampilanState();
 }

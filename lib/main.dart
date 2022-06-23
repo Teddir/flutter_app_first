@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screen/detail_place.dart';
+import 'package:flutter_app/screen/tourism_place.dart';
 
 void main() => runApp(const MyApp());
 
@@ -10,12 +12,206 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Wisata Bali',
       theme: ThemeData(fontFamily: 'Montserrat'),
-      home: LayoutBuild(),
+      home: MainScreens(),
+    );
+  }
+}
+
+// project wisata 2
+class TourismPlaceWeb extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        final TourismPlace place = tourismPlaceList[index];
+        return InkWell(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return DetailScreen(place: place);
+            }));
+          },
+          child: Card(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    padding: EdgeInsets.all(4.0),
+                    alignment: Alignment.center,
+                    child: Image.network(place.imageAsset),
+                  ),
+                ),
+                Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            place.name,
+                            style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Mulish'),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(place.location),
+                          SizedBox(
+                            height: 8.0,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                place.ticketPrice,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 5.0,
+                              ),
+                              Text(place.openTime),
+                            ],
+                          )
+                        ],
+                      ),
+                    ))
+              ],
+            ),
+          ),
+        );
+      },
+      itemCount: tourismPlaceList.length,
+    );
+  }
+}
+
+class TourismPlaceWebGrid extends StatelessWidget {
+  final int gridCount;
+  TourismPlaceWebGrid({required this.gridCount});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scrollbar(
+      thumbVisibility: true,
+      child: Padding(
+        padding: EdgeInsets.all(24.0),
+        child: GridView.count(
+          crossAxisCount: gridCount,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
+          children: tourismPlaceList.map((place) {
+            return InkWell(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return DetailScreen(place: place);
+                  },
+                ));
+              },
+              child: Card(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                        child: Image.network(
+                      place.imageAsset,
+                      fit: BoxFit.cover,
+                    )),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4.0, horizontal: 6.0),
+                      child: Text(
+                        place.name,
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Mulish',
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0, left: 6.0),
+                      child: Text(place.location,
+                          style: const TextStyle(
+                            fontSize: 14.0,
+                          )),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }).toList(),
+        ),
+      ),
+    );
+  }
+}
+
+// project wisata 1
+class MainScreens extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Wisata Bali')),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth <= 600) {
+            return TourismPlaceWeb();
+          } else if (constraints.maxWidth <= 1200) {
+            return TourismPlaceWebGrid(gridCount: 4);
+          } else {
+            return TourismPlaceWebGrid(gridCount: 6);
+          }
+        },
+      ),
     );
   }
 }
 
 // MediaQuery & LayoutBuilder
+
+//-------------> start example
+class BoxResponsive extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+        if (constraints.maxWidth < 600) {
+          return ListView(
+            children: _generateContainers(),
+          );
+        } else if (constraints.maxWidth < 900) {
+          return GridView.count(
+            crossAxisCount: 2,
+            children: _generateContainers(),
+          );
+        } else {
+          return GridView.count(
+            crossAxisCount: 6,
+            children: _generateContainers(),
+          );
+        }
+      }),
+    );
+  }
+
+  List<Widget> _generateContainers() {
+    return List<Widget>.generate(24, (index) {
+      return Container(
+        margin: const EdgeInsets.all(8),
+        color: Colors.black12,
+        height: 200,
+      );
+    });
+  }
+}
+
+//-------------> end example
+
 class MediaQue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

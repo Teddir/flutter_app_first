@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_app/screen/tourism_place.dart';
+import 'package:flutter_app/first_project/screen/tourism_place.dart';
 
 var informationTextStyle = const TextStyle(fontFamily: 'Mulish');
 

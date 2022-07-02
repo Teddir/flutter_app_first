@@ -100,3 +100,15 @@ flutter:
     - family: Montserrat
       fonts:
         - asset: src/fonts/Montserrat/Montserrat-Regular.ttf
+    - family: SourceSansPro_light
+      fonts:
+        - asset: src/fonts/SourceSansPro/SourceSansPro-Light.ttf
+    - family: SourceSansPro_regular
+      fonts:
+        - asset: src/fonts/SourceSansPro/SourceSansPro-Regular.ttf
+    - family: SourceSansPro_semiBold
+      fonts:
+        - asset: src/fonts/SourceSansPro/SourceSansPro-SemiBold.ttf
+    - family: SourceSansPro_bold
+      fonts:
+        - asset: src/fonts/SourceSansPro/SourceSansPro-bold.ttf

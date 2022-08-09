@@ -70,7 +70,7 @@ class TourismPlaceWeb extends StatelessWidget {
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               SizedBox(
-                                height: 5.0,
+                                height: 6.0,
                               ),
                               Text(place.openTime),
                             ],
